@@ -6,7 +6,7 @@ import com.runemate.ui.setting.open.*;
 @SettingsGroup
 public interface LocalSettings extends Settings {
     @Range(
-        min = 0,
+        min = 5,
         max = 94
     )
     @Setting(
