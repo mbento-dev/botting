@@ -16,7 +16,7 @@ public class AttackNagua extends Task {
         if (me == null){
             me = Players.getLocal();
             return false;
-        };
+        }
 
         nearestNagua = Npcs.newQuery().names("Sulphur Nagua").reachable().targeting(me).results().nearest();
         if (me.getTarget() == null) {
@@ -28,6 +28,7 @@ public class AttackNagua extends Task {
 
     @Override
     public void execute() {
+        fileLogger.info("Attacking nagua" + nearestNagua);
         if(nearestNagua.interact("Attack"))
             Execution.delay(600, 1200);
     }
