@@ -1,7 +1,9 @@
 package com.runemate.fenrisfeng.nagua.resources;
 
 import java.util.*;
+import lombok.*;
 
+@Getter
 public enum InterestingLoot {
     // Ores
     IRON_ORE("Iron ore"),
@@ -24,10 +26,6 @@ public enum InterestingLoot {
 
     InterestingLoot(String name) {
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getAllNamesRegex() {
