@@ -14,7 +14,6 @@ public class DrinkPotion extends Task {
 
     private int randomMinPrayer = 15;
     private final int minPrayer;
-    private int currentPrayer = 0;
 
     private SpriteItem potion;
 
@@ -25,7 +24,7 @@ public class DrinkPotion extends Task {
 
     @Override
     public boolean validate() {
-        currentPrayer = Prayer
+        int currentPrayer = Prayer
             .getPoints();
         if(currentPrayer > randomMinPrayer) {
             return false;
