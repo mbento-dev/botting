@@ -35,7 +35,6 @@ public class ChangeWeapon extends Task {
 
         OverheadIcon overhead = hunleff.getOverheadIcons().get(0);
 
-//        weapon = Equipment.newQuery().names("Corrupted ((staff)|(bow)) \\(\\w*\\)").results().first();
         weapon = Equipment.newQuery().names("Corrupted staff \\(\\w*\\)").results().first();
 
         if (weapon == null && overhead.getPrayerType() == OverheadIcon.PrayerType.MAGIC) {
