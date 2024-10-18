@@ -1,15 +1,11 @@
 package com.runemate.fenrisfeng.nagua.tasks;
 
-import com.runemate.fenrisfeng.training.logger.*;
-import com.runemate.game.api.hybrid.*;
-import com.runemate.game.api.hybrid.entities.*;
+import com.runemate.fenrisfeng.common.logger.*;
 import com.runemate.game.api.hybrid.local.hud.interfaces.*;
-import com.runemate.game.api.hybrid.player_sense.*;
 import com.runemate.game.api.osrs.local.hud.interfaces.*;
 import com.runemate.game.api.script.*;
 import com.runemate.game.api.script.framework.task.*;
 import java.util.*;
-import java.util.random.*;
 import java.util.regex.*;
 
 public class DrinkPotion extends Task {

@@ -1,7 +1,6 @@
-package com.runemate.fenrisfeng.training.logger;
+package com.runemate.fenrisfeng.common.logger;
 
 import java.io.*;
-import java.util.*;
 import org.apache.logging.log4j.*;
 
 public class FileLogger {

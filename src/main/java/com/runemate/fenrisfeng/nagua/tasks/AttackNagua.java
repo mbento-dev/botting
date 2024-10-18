@@ -1,12 +1,10 @@
 package com.runemate.fenrisfeng.nagua.tasks;
 
-import com.runemate.fenrisfeng.training.logger.*;
+import com.runemate.fenrisfeng.common.logger.*;
 import com.runemate.game.api.hybrid.entities.*;
 import com.runemate.game.api.hybrid.region.*;
 import com.runemate.game.api.script.*;
 import com.runemate.game.api.script.framework.task.*;
-import com.runemate.game.events.osrs.*;
-import org.apache.logging.log4j.*;
 
 public class AttackNagua extends Task {
     private final FileLogger fileLogger;

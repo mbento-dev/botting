@@ -2,7 +2,7 @@ package com.runemate.fenrisfeng.nagua;
 
 import com.runemate.fenrisfeng.nagua.resources.*;
 import com.runemate.fenrisfeng.nagua.tasks.*;
-import com.runemate.fenrisfeng.training.logger.*;
+import com.runemate.fenrisfeng.common.logger.*;
 import com.runemate.game.api.hybrid.entities.*;
 import com.runemate.game.api.hybrid.region.*;
 import com.runemate.game.api.script.framework.task.*;
