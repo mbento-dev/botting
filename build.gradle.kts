@@ -14,9 +14,9 @@ runemate {
     devMode.set(true)
 
     manifests {
-        create("Basic Gradle Bot") {
+        create("Hunleff Mate") {
             //This is the fully qualified name of your main class
-            mainClass = "com.runemate.fenrisfeng.training.BasicGradleProjectBot"
+            mainClass = "com.runemate.fenrisfeng.hunleffmate.HunleffMate"
 
             //A short description that is shown under the bot name on the bot store
             tagline = "a test bot :)"
@@ -28,10 +28,10 @@ runemate {
             internalId = "test-bot"
 
             //The version of the bot
-            version = "1.0.0"
+            version = "0.0.1"
 
             //The store supports multiple categories, the first will be the "main" category
-            categories(Category.OTHER)
+            categories(Category.BOSSING)
 
             //This is where you declare the price(s) of the bot
             variants {
@@ -63,7 +63,7 @@ runemate {
             internalId = "nagua-3000"
 
             //The version of the bot
-            version = "0.0.1"
+            version = "0.0.4"
 
             //The store supports multiple categories, the first will be the "main" category
             categories(Category.COMBAT)
