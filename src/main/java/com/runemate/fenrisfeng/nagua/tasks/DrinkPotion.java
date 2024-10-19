@@ -33,7 +33,8 @@ public class DrinkPotion extends Task {
             .newQuery()
             .names(Pattern.compile("Moonlight potion\\([1-4]\\)"))
             .results()
-            .sortByIndex()
+            // Sort by id (high doses before low doses)
+//            .sort((potA, potB) -> potA)
             .last();
         return potion != null;
     }

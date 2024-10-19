@@ -18,8 +18,8 @@ public class NaguaFarmer extends TaskBot {
 
     @Override
     public void onStart(final String... arguments) {
-        Actor me = Players.getLocal();
+        Player me = Players.getLocal();
 
-        add(new DrinkPotion(fileLogger, settings.minPrayer()));
+        add(new FindNaguaSpot(fileLogger, me));
     }
 }
