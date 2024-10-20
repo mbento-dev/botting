@@ -3,7 +3,7 @@ package com.runemate.fenrisfeng.nagua.resources;
 import com.runemate.game.api.hybrid.location.*;
 import lombok.*;
 
-public enum InterestingArea {
+public enum interestingArea {
     NAGUA_TEMPLE(
         new Area.Circular(new Coordinate(1376, 9561, 0), 10),
         "NAGUA_TEMPLE"
@@ -27,11 +27,11 @@ public enum InterestingArea {
     @Getter
     private String zone;
 
-    InterestingArea(Area area) {
+    interestingArea(Area area) {
         this.area = area;
     }
 
-    InterestingArea(Area area, String zone) {
+    interestingArea(Area area, String zone) {
         this.area = area;
         this.zone = zone;
     }
