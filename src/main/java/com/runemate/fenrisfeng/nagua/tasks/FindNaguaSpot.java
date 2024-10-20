@@ -106,7 +106,7 @@ public class FindNaguaSpot extends Task {
         } else {
             Area destination = getAreaByZone(zones[zoneCounter]).getArea();
             Path path = ScenePath.buildTo(destination);
-            if (me.getPosition() == null) return
+            if (me.getPosition() == null) return;
             while (me.getPosition().distanceTo(destination) > 5) {
                 if (path != null) {
                     path.step();
