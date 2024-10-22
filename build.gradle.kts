@@ -43,11 +43,6 @@ runemate {
 //                window = Duration.ofDays(7)
 //                allowance = Duration.ofHours(3)
 //            }
-
-            //Declare any resources used by the bot, relative to src/main/resources
-//            resources {
-//                include("fxml/example.fxml")
-//            }
         }
         create("Nagua Farmer") {
             //This is the fully qualified name of your main class
@@ -77,11 +72,6 @@ runemate {
 //            trial {
 //                window = Duration.ofDays(7)
 //                allowance = Duration.ofHours(3)
-//            }
-
-            //Declare any resources used by the bot, relative to src/main/resources
-//            resources {
-//                include("fxml/example.fxml")
 //            }
         }
     }
