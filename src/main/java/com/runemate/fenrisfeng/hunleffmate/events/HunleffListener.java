@@ -1,25 +1,23 @@
 package com.runemate.fenrisfeng.hunleffmate.events;
 
-import com.runemate.fenrisfeng.common.logger.*;
 import com.runemate.fenrisfeng.hunleffmate.resources.*;
+import com.runemate.game.api.hybrid.entities.details.*;
 import com.runemate.game.api.hybrid.input.direct.*;
 import com.runemate.game.api.hybrid.local.hud.interfaces.*;
 import com.runemate.game.api.osrs.local.hud.interfaces.*;
 import com.runemate.game.api.script.*;
 import com.runemate.game.api.script.framework.listeners.*;
 import com.runemate.game.api.script.framework.listeners.events.*;
-import java.util.*;
+import org.apache.logging.log4j.*;
 
 public class HunleffListener implements NpcListener {
-    private final FileLogger fileLogger;
+    private final Logger logger;
 
-    private String prayerName = "MAGIC";
-
-    public HunleffListener(final FileLogger fileLogger) {
-        this.fileLogger = fileLogger;
+    public HunleffListener(final Logger logger) {
+        this.logger = logger;
     }
 
-    private void switchPrayer(String prayer) {
+    private void switchPrayer(String prayer, Animable anima) {
         final InterfaceComponent ICPrayer = switch (prayer){
             case "RANGED":
                 yield Prayer.PROTECT_FROM_MISSILES.getComponent();
@@ -29,19 +27,17 @@ public class HunleffListener implements NpcListener {
                 throw new IllegalStateException("Unexpected value: " + prayer);
         };
 
-        // Test if delay acts as a wait
-        Execution.delay(33333,66666);
+        Execution.delayUntil(() -> anima.getAnimationId() != -1, 600);
         DirectInput.send(MenuAction.forInterfaceComponent(ICPrayer, 0));
     }
 
     @Override
     public void onNpcAnimationChanged(final AnimationEvent event) {
-        fileLogger.info(event.toString());
         if( event.getAnimationId() == InterestingAnimations.HUNLEFF.ATTACK_CHANGE_TO_MAGE) {
-            switchPrayer("MAGIC");
+            switchPrayer("MAGIC", event.getSource());
         }
         if( event.getAnimationId() == InterestingAnimations.HUNLEFF.ATTACK_CHANGE_TO_RANGED) {
-            switchPrayer("RANGED");
+            switchPrayer("RANGED", event.getSource());
         }
     }
 }

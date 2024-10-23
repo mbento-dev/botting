@@ -10,22 +10,19 @@ import org.apache.logging.log4j.*;
 
 public class HunleffMate extends TaskBot {
     private static final Logger logger = LogManager.getLogger(HunleffMate.class);
-    private static final FileLogger fileLogger = new FileLogger(logger);
 
 
 
     @Override
     public void onStart(final String... arguments) {
         Actor me = Players.getLocal();
-        System.out.println("java version: "+System.getProperty("java.version"));
-        System.out.println("javafx.version: " + System.getProperty("javafx.version"));
 
-        fileLogger.info("Starting");
-        HunleffListener hunleffListener = new HunleffListener(fileLogger);
-        fileLogger.info("Started");
+        logger.info("Starting");
+        HunleffListener hunleffListener = new HunleffListener(logger);
+        logger.info("Started");
 
         getEventDispatcher().addListener(hunleffListener);
 
-//        add(new ChangeWeapon(fileLogger, me));
+        add(new ChangeWeapon(logger, me));
     }
 }

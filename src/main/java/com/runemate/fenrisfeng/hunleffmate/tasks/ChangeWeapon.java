@@ -1,26 +1,26 @@
 package com.runemate.fenrisfeng.hunleffmate.tasks;
 
-import com.runemate.fenrisfeng.common.logger.*;
 import com.runemate.game.api.hybrid.entities.*;
 import com.runemate.game.api.hybrid.entities.status.*;
 import com.runemate.game.api.hybrid.input.direct.*;
 import com.runemate.game.api.hybrid.local.hud.interfaces.*;
-import com.runemate.game.api.hybrid.player_sense.*;
+import com.runemate.game.api.hybrid.location.*;
 import com.runemate.game.api.hybrid.region.*;
 import com.runemate.game.api.script.*;
 import com.runemate.game.api.script.framework.task.*;
 import java.util.*;
+import org.apache.logging.log4j.*;
 
 public class ChangeWeapon extends Task {
-    private final FileLogger fileLogger;
+    private final Logger logger;
     private final Actor me;
 
     private Npc hunleff;
     private SpriteItem weapon;
     private boolean swapToRanged;
 
-    public ChangeWeapon(final FileLogger fileLogger, final Actor me) {
-        this.fileLogger = fileLogger;
+    public ChangeWeapon(final Logger logger, final Actor me) {
+        this.logger = logger;
         this.me = me;
     }
 
@@ -50,6 +50,18 @@ public class ChangeWeapon extends Task {
 
     @Override
     public void execute() {
+        GameObject tree;
+        tree = GameObjects
+            .newQuery()
+            .within(new Area.Circular(Objects.requireNonNull(me.getPosition()), 10))
+            .names("Dead tree")
+            .actions("Chop down")
+            .results()
+        .nearestTo(me.getPosition());
+
+        assert tree != null;
+        DirectInput.send(MenuAction.forGameObject(tree, "Chop down"));
+
         SpriteItem weapon;
         if (swapToRanged) {
             weapon = Equipment.newQuery().names("Corrupted bow \\(\\w*\\)").results().first();
@@ -59,7 +71,13 @@ public class ChangeWeapon extends Task {
         if (weapon == null) {
             return;
         }
+        
         DirectInput.send(MenuAction.forSpriteItem(weapon, "Equip"));
-        Execution.delay(600, 1200);
+
+        if (me == null || me.getTarget() == null || me.getTarget().getName() == null ) {
+            Execution.delay(300, 622);
+            return;
+        }
+        Execution.delayUntil(() -> me.getTarget().getName().equals("Corrupted Hunleff"), 300);
     }
 }

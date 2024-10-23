@@ -5,7 +5,6 @@ import org.apache.logging.log4j.*;
 
 public class FileLogger {
     private final Logger logger;
-    private String fileName = "log.txt";
 
     public FileLogger(Logger logger) {
         this.logger = logger;
