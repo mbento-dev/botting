@@ -20,6 +20,11 @@ public class NaguaFarmer extends TaskBot {
     public void onStart(final String... arguments) {
         Player me = Players.getLocal();
 
-        add(new FindNaguaSpot(fileLogger, me));
+        add(
+            new DrinkPotion(logger, 15),
+            new MakePotion(me, 2),
+            new FindNaguaSpot(logger, me),
+            new PickLoot(logger, me)
+        );
     }
 }

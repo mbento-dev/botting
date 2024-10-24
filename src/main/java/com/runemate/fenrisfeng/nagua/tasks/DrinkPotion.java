@@ -7,9 +7,10 @@ import com.runemate.game.api.script.*;
 import com.runemate.game.api.script.framework.task.*;
 import java.util.*;
 import java.util.regex.*;
+import org.apache.logging.log4j.*;
 
 public class DrinkPotion extends Task {
-    private final FileLogger fileLogger;
+    private final Logger logger;
     private final Random rand = new Random();
 
     private int randomMinPrayer = 15;
@@ -17,8 +18,8 @@ public class DrinkPotion extends Task {
 
     private SpriteItem potion;
 
-    public DrinkPotion(FileLogger fileLogger, final int minPrayer) {
-        this.fileLogger = fileLogger;
+    public DrinkPotion(Logger logger, final int minPrayer) {
+        this.logger = logger;
         this.minPrayer = minPrayer;
     }
 

@@ -1,26 +1,24 @@
 package com.runemate.fenrisfeng.nagua.tasks;
 
-import com.runemate.fenrisfeng.common.logger.*;
+import com.runemate.fenrisfeng.common.*;
 import com.runemate.fenrisfeng.nagua.resources.*;
 import com.runemate.game.api.hybrid.entities.*;
 import com.runemate.game.api.hybrid.local.*;
 import com.runemate.game.api.hybrid.local.hud.interfaces.*;
 import com.runemate.game.api.hybrid.location.*;
-import com.runemate.game.api.hybrid.location.navigation.*;
-import com.runemate.game.api.hybrid.location.navigation.cognizant.*;
-import com.runemate.game.api.hybrid.queries.*;
 import com.runemate.game.api.hybrid.region.*;
 import com.runemate.game.api.script.*;
 import com.runemate.game.api.script.framework.task.*;
 import java.util.*;
 import lombok.*;
+import org.apache.logging.log4j.*;
 
 public class FindNaguaSpot extends Task {
-    private final FileLogger fileLogger;
+    private final Logger logger;
     private final Player me;
-    private final interestingArea naguaTemple = interestingArea.NAGUA_TEMPLE;
-    private final interestingArea naguaStove = interestingArea.NAGUA_STOVE;
-    private final interestingArea naguaChest = interestingArea.NAGUA_CHEST;
+    private final InterestingArea naguaTemple = InterestingArea.NAGUA_TEMPLE;
+    private final InterestingArea naguaStove = InterestingArea.NAGUA_STOVE;
+    private final InterestingArea naguaChest = InterestingArea.NAGUA_CHEST;
     private final String[] zones = {"NAGUA_TEMPLE", "NAGUA_STOVE", "NAGUA_CHEST"};
 
     @Setter
@@ -49,8 +47,8 @@ public class FindNaguaSpot extends Task {
 
     private final List<WorldType> excludeWT = Arrays.asList(excludeWTArray);
 
-    public FindNaguaSpot(final FileLogger fileLogger, final Player me) {
-        this.fileLogger = fileLogger;
+    public FindNaguaSpot(final Logger logger, final Player me) {
+        this.logger = logger;
         this.me = me;
     }
 
@@ -68,7 +66,7 @@ public class FindNaguaSpot extends Task {
         WorldHop.hopToFirst((world) -> world.getWorldTypes().stream().anyMatch(excludeWT::contains));
     }
 
-    private interestingArea getAreaByZone(String zone) {
+    private InterestingArea getAreaByZone(String zone) {
         return switch (zone) {
             case "NAGUA_TEMPLE" -> naguaTemple;
             case "NAGUA_STOVE" -> naguaStove;
@@ -78,7 +76,7 @@ public class FindNaguaSpot extends Task {
 
     @Override
     public boolean validate() {
-        interestingArea area = getAreaByZone(zone);
+        InterestingArea area = getAreaByZone(zone);
         assert area != null;
         if ( Players
             .newQuery()
@@ -105,13 +103,7 @@ public class FindNaguaSpot extends Task {
             Execution.delayUntil(() -> currentWorld == Worlds.getCurrent());
         } else {
             Area destination = getAreaByZone(zones[zoneCounter]).getArea();
-            Path path = ScenePath.buildTo(destination);
-            if (me.getPosition() == null) return;
-            while (me.getPosition().distanceTo(destination) > 5) {
-                if (path != null) {
-                    path.step();
-                }
-            }
+            Pathing.getDestinationFromMe(destination, me);
         }
 
     }

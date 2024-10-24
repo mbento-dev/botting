@@ -3,16 +3,18 @@ package com.runemate.fenrisfeng.nagua.tasks;
 import com.runemate.fenrisfeng.nagua.resources.*;
 import com.runemate.fenrisfeng.common.logger.*;
 import com.runemate.game.api.hybrid.entities.*;
+import com.runemate.game.api.hybrid.input.direct.*;
 import com.runemate.game.api.hybrid.region.*;
 import com.runemate.game.api.script.framework.task.*;
+import org.apache.logging.log4j.*;
 
 public class PickLoot extends Task {
-    private final FileLogger fileLogger;
+    private final Logger logger;
     private final Player me;
     private GroundItem nearestItem;
 
-    public PickLoot(final FileLogger fileLogger, final Player me) {
-        this.fileLogger = fileLogger;
+    public PickLoot(final Logger logger, final Player me) {
+        this.logger = logger;
         this.me = me;
     }
 
@@ -34,7 +36,7 @@ public class PickLoot extends Task {
 
     @Override
     public void execute() {
-        fileLogger.info("Picking item from the ground" + nearestItem);
-//        nearestItem.interact("Pick");
+        logger.info("Picking item from the ground" + nearestItem);
+        DirectInput.send(MenuAction.forGroundItem(nearestItem, "Pick"));
     }
 }

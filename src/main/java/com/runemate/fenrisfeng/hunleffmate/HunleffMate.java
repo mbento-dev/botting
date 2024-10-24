@@ -1,6 +1,5 @@
 package com.runemate.fenrisfeng.hunleffmate;
 
-import com.runemate.fenrisfeng.common.logger.*;
 import com.runemate.fenrisfeng.hunleffmate.events.*;
 import com.runemate.fenrisfeng.hunleffmate.tasks.*;
 import com.runemate.game.api.hybrid.entities.*;
@@ -17,9 +16,7 @@ public class HunleffMate extends TaskBot {
     public void onStart(final String... arguments) {
         Actor me = Players.getLocal();
 
-        logger.info("Starting");
         HunleffListener hunleffListener = new HunleffListener(logger);
-        logger.info("Started");
 
         getEventDispatcher().addListener(hunleffListener);
 
