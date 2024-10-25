@@ -89,9 +89,6 @@ public class FindNaguaSpot extends Task {
             return true;
         }
 
-        // Search for nagua around the area
-        // Find if there are players around the area
-        // Find if out of combat
         return false;
     }
 
