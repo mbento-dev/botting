@@ -11,7 +11,6 @@ import org.apache.logging.log4j.*;
 
 public class NaguaFarmer extends TaskBot {
     private static final Logger logger = LogManager.getLogger(NaguaFarmer.class);
-    private static final FileLogger fileLogger = new FileLogger(logger);
 
     @SettingsProvider(updatable = true)
     private LocalSettings settings;

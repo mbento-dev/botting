@@ -47,7 +47,7 @@ public class DrinkPotion extends Task {
             minPrayer + 5
         );
         
-        fileLogger.info("Drinking potion" + potion);
+        logger.info("Drinking potion" + potion);
         if(potion.interact("Drink"))
             Execution.delay(600, 1200);
     }
