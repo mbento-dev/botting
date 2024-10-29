@@ -1,4 +1,4 @@
-package com.runemate.fenrisfeng.bonerunner.tasks.leaves;
+package com.runemate.fenrisfeng.bonerunner.branches.leaves;
 
 import com.runemate.game.api.hybrid.*;
 import com.runemate.game.api.hybrid.entities.*;
