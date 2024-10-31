@@ -1,32 +1,32 @@
 
 <manifest>
     <!-- REQUIRED: Fully qualified name of your bot's main class -->
-    <main-class>com.runemate.fenrisfeng.nagua.NaguaFarmer</main-class>
+    <main-class>com.runemate.fenrisfeng.bonerunner.BoneRunner</main-class>
 
     <!--
         REQUIRED: The name of your bot as it will appear on the store
         Should not contain any special characters
     -->
-    <name>Development Toolkit</name>
+    <name>Fenris Bone Runner</name>
 
     <!--
         REQUIRED: The subtext of your bot as it appears on the store
         Max 50 chars.
     -->
-    <tag-line>RuneMate's Swiss Army Knife!</tag-line>
+    <tag-line>Support another account by running bones for them</tag-line>
 
     <!--
         REQUIRED: A brief description of what your bot does.
         Max 110 chars.
     -->
-    <description>Displays a host of useful information to assist in bot development.</description>
+    <description>Start inside the desired POH in rimmington and set the desired bones and player name.</description>
 
     <!--
         REQUIRED: Current version of your bot.
         You should stick to the format "major.minor.patch" if possible.
         Updates to the bot store won't be recognised unless this is updated each push.
     -->
-    <version>1.2.3</version>
+    <version>1.0.0</version>
 
     <!--
         OPTIONAL: A unique identifier for your bot, useful if you want to have different versions of the same bot
@@ -36,7 +36,7 @@
 
         Once you have pushed a bot, it's internal-id can never change, or it will be treated as a new bot on the store.
     -->
-    <internal-id>devkit</internal-id>
+    <internal-id>fenris-bone-runner-public</internal-id>
 
     <!--
         OPTIONAL: If the bots source code should be available to the public
@@ -47,8 +47,6 @@
         OPTIONAL: If this bot should be hidden from the bot store entirely (NOT THE SAME AS PRIVATE)
     -->
     <hidden>false</hidden>
-
-
     <!--
         REQUIRED: Who can use this bot. (case-insensitive)
         Valid options are: PUBLIC, PRIVATE, SUPPORTER
@@ -60,7 +58,7 @@
         eg. 0.10 = $0.10/hour of credits
         Must be greater than or equal to 0.00, if it's higher than 0.00 this bot will be flagged as PREMIUM.
     -->
-    <price>0.00</price>
+<!--    <price>0.00</price>-->
 
     <!--
         REQUIRED: What game modes your bot supports (case-insensitive)
@@ -80,45 +78,18 @@
             SUMMONING, THIEVING, WOODCUTTING
     -->
     <categories>
-        <category>DEVELOPER_TOOLS</category>
-        <category>OTHER</category>
+        <category>PRAYER</category>
     </categories>
-
-    <!--
-        OPTIONAL: What resources (not source files) we need to package with your bot in order for it to run.
-        eg. *.fxml files for GUIs or *.nav files for navigation etc
-
-        These MUST be declared, or they will not be accessible from your bot when it reaches the store,
-        even if it works when run locally.
-
-        If the listed resource is a directory, all files in that directory will be included (not recursive).
-        Don't add your manifest to this.
-    -->
-    <resources>
-        <resource>fxml/settings/</resource>
-        <resource>fxml/skill/</resource>
-        <resource>css/matena.css</resource>
-    </resources>
 
     <!--
         REQUIRED: Additional tags that will match your bot in searches on the bot store.
         Must provide 1-50, and all must be relevant to the activity your bot is doing.
     -->
     <tags>
-        <tag>devkit</tag>
+        <tag>prayer</tag>
+        <tag>run</tag>
+        <tag>runner</tag>
+        <tag>POH</tag>
+        <tag>house</tag>
     </tags>
-
-    <!--
-        OPTIONAL: Classes that will not be obfuscated when we package your bot for the store.
-        This is an advanced setting and should not be used unless specifically required by your bot
-        for the purposes of serialization etc.
-
-        Accepts wildcards (* for current package, ** for recursive from this package)
-    -->
-    <obfuscation>
-        <exclude>com.runemate.bots.devkit.data.BotCategory</exclude>
-        <exclude>com.runemate.bots.devkit.data.Bot*</exclude>
-        <exclude>com.runemate.bots.devkit.data.*</exclude>
-        <exclude>com.runemate.bots.devkit.**</exclude>
-    </obfuscation>
 </manifest>

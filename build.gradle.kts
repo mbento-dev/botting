@@ -1,56 +1,75 @@
 import com.runemate.game.api.bot.data.Category
+import java.time.Duration
+import java.net.URL
 
 plugins {
-    // Apply the Java plugin to your Gradle project
-    java
+  // Apply the Java plugin to your Gradle project
+  java
 
-    // Apply the RuneMate plugin to your Gradle project
-    // The latest version of the Gradle plugin can be found here: https://plugins.gradle.org/plugin/com.runemate
-    id("com.runemate") version "1.3.0"
+  // Apply the RuneMate plugin to your Gradle project
+  // The latest version of the Gradle plugin can be found here: https://plugins.gradle.org/plugin/com.runemate
+  id("com.runemate") version "1.3.0"
+}
+
+
+fun getLatestApiVersion(): String {
+  val url = "https://gitlab.com/api/v4/projects/32972353/packages/maven/com/runemate/runemate-game-api/maven-metadata.xml"
+  val content = URL(url).readText()
+  return content.substringAfter("<latest>").substringBefore("</latest>")
+}
+
+fun getLatestClientVersion(): String {
+  val url = "https://gitlab.com/api/v4/projects/10471880/packages/maven/com/runemate/runemate-client/maven-metadata.xml"
+  val content = URL(url).readText()
+  return content.substringAfter("<latest>").substringBefore("</latest>")
 }
 
 //Used to configure various aspects of the RuneMate plugin
 runemate {
-    devMode.set(true)
+  devMode.set(true)
+  apiVersion = getLatestApiVersion()
+  clientVersion = getLatestClientVersion()
 
-    manifests {
-        create("Fenris Bone Runner") {
-        //This is the fully qualified name of your main class
-        mainClass = "com.runemate.fenrisfeng.bonerunner.BoneRunner"
+  manifests {
+    create("Fenris Bone Runner") {
+      //This is the fully qualified name of your main class
+      mainClass = "com.runemate.fenrisfeng.bonerunner.BoneRunner"
 
-        //A short description that is shown under the bot name on the bot store
-        tagline = "a test bot :)"
+      //A short description that is shown under the bot name on the bot store
+      tagline = "Support another account by running bones for them"
 
-        //Shown in the bot description in the client
-        description = "Tests stuff?"
+      //Shown in the bot description in the client
+      description = "Start inside the desired POH in rimmington and set the desired bones and player name."
 
-        //The unique internal ID of the bot
-        internalId = "test-bot"
+      //The version of the bot
+      version = "1.0.0"
 
-        //The version of the bot
-        version = "0.0.1"
+      //The unique internal ID of the bot
+      internalId = "fenris-bone-runner-public"
 
-        //The store supports multiple categories, the first will be the "main" category
-        categories(Category.OTHER)
+      tags("PRAYER", "RUN", "RUNNER", "FENRIS", "POH")
 
-        //This is where you declare the price(s) of the bot
-        variants {
-            variant(name = "Variant name", price = 0.00)
-        }
+      //The store supports multiple categories, the first will be the "main" category
+      categories(Category.PRAYER, Category.OTHER)
 
-        //For premium bots, you can declare a "trial" which is a period for which a user can use the bot for free
-//            trial {
-//                window = Duration.ofDays(7)
-//                allowance = Duration.ofHours(3)
-//            }
+      //This is where you declare the price(s) of the bot
+      variants {
+        variant(name = "Premium", price = 0.05)
+      }
+
+      //For premium bots, you can declare a "trial" which is a period for which a user can use the bot for free
+      trial {
+        window = Duration.ofDays(7)
+        allowance = Duration.ofHours(3)
+      }
     }
-    }
+  }
 
 }
 
 //Sets the project language level to 17
 java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
+  toolchain {
+    languageVersion.set(JavaLanguageVersion.of(17))
+  }
 }
