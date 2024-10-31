@@ -13,8 +13,6 @@ import lombok.*;
 import org.apache.logging.log4j.*;
 
 public class TradeBones extends LeafTask {
-
-    private static final Logger log = LogManager.getLogger(TradeBones.class);
     @NonNull private final BoneRunner bot = (BoneRunner) Objects.requireNonNull(Environment.getBot());
 
     @Override
@@ -23,9 +21,6 @@ public class TradeBones extends LeafTask {
         int bonesAmount = bot.bonesSettings.bonesAmount();
 
         String tradingPartnerName = bot.playerSettings.tradingPartnerName();
-
-        log.info("Bone type to trade: {}", boneType);
-        log.info("Player to trade: {}",tradingPartnerName);
 
         Player tradingPartner = Players.newQuery().names(tradingPartnerName).results().first();
         if (tradingPartner == null) {

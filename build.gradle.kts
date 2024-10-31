@@ -52,16 +52,17 @@ runemate {
       //The store supports multiple categories, the first will be the "main" category
       categories(Category.PRAYER, Category.OTHER)
 
+
       //This is where you declare the price(s) of the bot
-      variants {
-        variant(name = "Premium", price = 0.05)
-      }
+//      variants {
+//        variant(name = "Premium", price = 0.05)
+//      }
 
       //For premium bots, you can declare a "trial" which is a period for which a user can use the bot for free
-      trial {
-        window = Duration.ofDays(7)
-        allowance = Duration.ofHours(3)
-      }
+//      trial {
+//        window = Duration.ofDays(7)
+//        allowance = Duration.ofHours(3)
+//      }
     }
   }
 

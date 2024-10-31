@@ -1,2 +1,2 @@
-rootProject.name = "test-botting"
+rootProject.name = "fenris-bot"
 
