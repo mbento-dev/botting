@@ -13,17 +13,27 @@ import com.runemate.game.api.script.*;
 import com.runemate.game.api.script.framework.tree.*;
 import java.awt.event.*;
 import java.util.*;
+import java.util.regex.*;
 import org.apache.logging.log4j.*;
 
 public class ExchangeBones extends LeafTask {
 
     private static final Logger log = LogManager.getLogger(ExchangeBones.class);
-    private final BoneRunner bot = (BoneRunner) Objects.requireNonNull(Environment.getBot());
+    private BoneRunner bot = (BoneRunner) Environment.getBot();
 
     @Override
     public void execute() {
+        if (bot == null) {
+            bot = (BoneRunner) Environment.getBot();
+            log.info(bot);
+            return;
+        }
+
+        if (!bot.isStarted()) {
+            return;
+        }
+
         String boneType = bot.bonesSettings.boneType();
-        log.info(boneType);
 
         SpriteItem notedBones = Inventory
             .newQuery()
@@ -56,14 +66,20 @@ public class ExchangeBones extends LeafTask {
 
         phials.click();
 
-        ChatDialog.Option dialogOpt = ChatDialog.getOption("Exchange All: \\d* coins");
+        log.info("Waiting for dialog to open");
+        Execution.delayUntil(ChatDialog::isOpen, 6000, 12000);
+
+        ChatDialog.Option dialogOpt = ChatDialog.getOption(Pattern.compile("Exchange All: \\d* coins"));
         if (dialogOpt == null){
+
+            log.info("Dialog options: {}", ChatDialog.getOptions());
             return;
         }
         if (PlayerSense.getAsBoolean(PlayerSense.Key.USE_MISC_HOTKEYS)) {
-            Keyboard.typeKey(KeyEvent.VK_SPACE);
+            Keyboard.typeKey(48 + dialogOpt.getNumber());
         } else {
             dialogOpt.select();
         }
+        Execution.delayUntil(() -> Inventory.newQuery().names(boneType).unnoted().results().first() != null);
     }
 }

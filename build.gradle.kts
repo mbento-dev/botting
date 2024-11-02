@@ -8,7 +8,7 @@ plugins {
 
   // Apply the RuneMate plugin to your Gradle project
   // The latest version of the Gradle plugin can be found here: https://plugins.gradle.org/plugin/com.runemate
-  id("com.runemate") version "1.3.0"
+  id("com.runemate") version "1.5.0"
 }
 
 

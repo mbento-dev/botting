@@ -13,10 +13,17 @@ import lombok.*;
 import org.apache.logging.log4j.*;
 
 public class TradeBones extends LeafTask {
-    @NonNull private final BoneRunner bot = (BoneRunner) Objects.requireNonNull(Environment.getBot());
+
+    private static final Logger log = LogManager.getLogger(TradeBones.class);
+    private BoneRunner bot = (BoneRunner) Environment.getBot();
 
     @Override
     public void execute() {
+        if (bot == null) {
+            bot = (BoneRunner) Environment.getBot();
+            log.info(bot);
+            return;
+        }
         String boneType = bot.bonesSettings.boneType();
         int bonesAmount = bot.bonesSettings.bonesAmount();
 
@@ -41,7 +48,7 @@ public class TradeBones extends LeafTask {
             .results()
             .first();
 
-        Trade.offer(notedBones, 27);
+        Trade.offer(notedBones, bonesAmount);
 
         final AtomicReference<SpriteItem> incomingBones = new AtomicReference<>();
         final AtomicReference<SpriteItem> coins = new AtomicReference<>();
