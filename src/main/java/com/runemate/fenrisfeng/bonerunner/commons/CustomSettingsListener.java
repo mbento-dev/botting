@@ -13,8 +13,6 @@ public class CustomSettingsListener implements SettingsListener {
 
     @Override
     public void onSettingChanged(final SettingChangedEvent settingChangedEvent) {
-        log.info("CHANGED THIS SHIIIIIT");
-        // NO ACTION
     }
 
     @Override
@@ -23,7 +21,6 @@ public class CustomSettingsListener implements SettingsListener {
         while (bot == null){
             log.info(bot);
         }
-        log.info("STARTING THIS SHIIIIIT");
 
         bot.setStarted(true);
     }
